@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
+
 class PageController extends Controller
 {
     public function home(): void
@@ -10,9 +12,14 @@ class PageController extends Controller
         $gretting = "Hello";
         $name = "John";
 
+        $categoryRepository = new CategoryRepository();
+
+        $categories = $categoryRepository->findAll();
+
         $this->render("page/home", [
             "greetings"=>$gretting,
             "name"=>$name,
+            "categories" => $categories,
         ]);
     }
 
